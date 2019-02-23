@@ -4,18 +4,42 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "lint": "tslint src/**/*.ts",
+    "tsc": "tsc",
+    "clean": "rimraf build",
+    "build": "yarn run clean && yarn run tsc --",
+    "watch": "yarn run build -- -w",
+    "watchAndRunAndroid": "concurrently \"yarn run watch\" \"yarn run android\"",
+    "buildRunAndroid": "yarn run build && yarn run watchAndRunAndroid ",
+    "watchAndRunIOS": "concurrently \"yarn run watch\" \"yarn run ios\"",
+    "buildRunIOS": "yarn run build && yarn run watchAndRunIOS ",
+    "watchAndStart": "concurrently \"yarn run watch\" \"yarn run start\"",
+    "buildAndStart": "yarn run build && yarn run watchAndStart ",
+    "testWithCoverage": "jest --updateSnapshot --watch --coverage && open ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "react": "16.6.3",
     "react-native": "0.58.5"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.6",
+    "@types/react": "16.3.10",
+    "@types/react-dom": "16.0.5",
+    "@types/react-native": "0.55.2",
+    "@types/react-test-renderer": "16.0.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "24.1.0",
+    "concurrently": "^4.1.0",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.52.0",
-    "react-test-renderer": "16.6.3"
+    "react-test-renderer": "16.6.3",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3333"
   },
   "jest": {
     "preset": "react-native"
