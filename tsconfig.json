@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "target": "es2015",
+    "jsx": "react",
+    "rootDir": "src",
+    "outDir": "build",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "preserveConstEnums": true,
+    "allowJs": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "lib": ["dom", "es6"]
+  },
+  "filesGlob": [
+    "typings/index.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "node_modules/typescript/lib/lib.es6.d.ts"
+  ],
+  "types": ["jest"],
+  "exclude": [
+    "build",
+    "node_modules",
+    "jest.config.js",
+    "babel.config.js",
+    "index.js",
+    "coverage"
+  ],
+  "compileOnSave": false
+}
