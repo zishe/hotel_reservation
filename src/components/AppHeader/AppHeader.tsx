@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Header, Left, Title, Right, Text, Body, Icon } from "native-base";
-import styles from "./AppHeader.styles";
+import { Header, Left, Title, Right, Body, Icon } from "native-base";
+import styles from "./styles";
 
 interface Props {
   title: string;
