@@ -4,10 +4,12 @@ module.exports = {
     "^.+\\.tsx?$": "ts-jest"
   },
   transformIgnorePatterns: [
-    "/node_modules/(?!native-base)/",
-    "node_modules/(?!react-native|native-base|react-native-vector-icons|react-navigation|native-base-shoutem-theme|@shoutem/theme|@shoutem/animation|@shoutem/ui|tcomb-form-native)"
+    "node_modules/(?!react-native|native-base|react-native-vector-icons|react-navigation|@react-navigation|native-base-shoutem-theme|@shoutem/theme|@shoutem/animation|@shoutem/ui|tcomb-form-native)"
   ],
   preset: "react-native",
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
   testRegex: "(/__tests__/.*|/src/.*\\.(test|spec))\\.(tsx?)$",
   moduleFileExtensions: [
     "ts",
@@ -26,8 +28,12 @@ module.exports = {
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
+    "!src/**/index.ts",
+    "!src/**/styles.ts",
     "!<rootDir>/node_modules/",
     "!<rootDir>/index.js",
+    "!<rootDir>/jest.setup.js",
     "!build/**/*.*"
-  ]
+  ],
+  setupFiles: ["./jest.setup.js"]
 };

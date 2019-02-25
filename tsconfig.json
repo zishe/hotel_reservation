@@ -30,6 +30,7 @@
     "build",
     "node_modules",
     "jest.config.js",
+    "jest.setup.js",
     "babel.config.js",
     "index.js",
     "coverage"
