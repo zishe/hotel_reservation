@@ -18,12 +18,17 @@
     "buildRunIOS": "yarn run build && yarn run watchAndRunIOS ",
     "watchAndStart": "concurrently \"yarn run watch\" \"yarn run start\"",
     "buildAndStart": "yarn run build && yarn run watchAndStart ",
-    "testWithCoverage": "jest --updateSnapshot --watch --coverage && open ./coverage/lcov-report/index.html"
+    "testWithCoverage": "jest --updateSnapshot --watch --coverage && open ./coverage/lcov-report/index.html",
+    "gql-schema-download": "apollo schema:download --endpoint=https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev",
+    "gql-codegen": "apollo client:codegen --queries=./src/graphql/**/*.ts --localSchemaFile=./schema.json --target=ts-modern"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+    "apollo-boost": "^0.1.28",
+    "graphql": "^14.1.1",
     "native-base": "^2.12.0",
     "react": "16.6.3",
+    "react-apollo": "^2.4.1",
     "react-native": "0.58.5",
     "react-native-awesome-alerts": "^1.2.0",
     "react-native-gesture-handler": "^1.0.16",
@@ -32,6 +37,7 @@
     "react-navigation": "^3.3.0"
   },
   "devDependencies": {
+    "@types/graphql": "^14.0.7",
     "@types/jest": "^24.0.6",
     "@types/react": "16.7.0",
     "@types/react-dom": "16.0.5",
@@ -39,11 +45,13 @@
     "@types/react-native-vector-icons": "^4.6.4",
     "@types/react-navigation": "^3.0.3",
     "@types/react-test-renderer": "16.0.1",
+    "apollo": "^2.5.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "24.1.0",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "concurrently": "^4.1.0",
+    "graphql-code-generator": "^0.17.0",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.52.0",
     "react-test-renderer": "16.6.3",
