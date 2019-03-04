@@ -12,7 +12,7 @@ import {
 import styles from "./styles";
 import { AppHeader } from "../../components";
 import { Query } from "react-apollo";
-import { getBookingsQuery } from "../../graphql/queries/getBookins";
+import { GET_BOOKINGS_QUERY } from "../../graphql/queries/getBookings";
 
 import {
   GetBookingsQuery,
@@ -26,7 +26,7 @@ interface Props {
 export default class BookingsScreen extends React.PureComponent<Props, {}> {
   render() {
     return (
-      <Query query={getBookingsQuery}>
+      <Query query={GET_BOOKINGS_QUERY}>
         {({ loading, data, error }) => this.renderList(data, loading, error)}
       </Query>
     );
@@ -62,18 +62,6 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
       </Container>
     );
   };
-
-  /**
-   * @description displays a message in the view's content area
-   * @param reservation reservation entity
-   */
-  // renderBooking = (reservation: any) => {
-  //   return (
-  //     <ListItem key={reservation.id}>
-  //       <Text>{reservation.name}</Text>
-  //     </ListItem>
-  //   );
-  // };
 
   renderBooking = ({ item: reservation }: any) => {
     return (
