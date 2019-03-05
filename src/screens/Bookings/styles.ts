@@ -18,5 +18,23 @@ export default StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "stretch",
     backgroundColor: "#F5FCFF"
+  },
+  cardBody: {
+    flex: 8
+  },
+  cardRight: {
+    flex: 2
+  },
+  hightlightedText: {
+    color: "#af2b65"
+  },
+  hightlightedNote: {
+    fontSize: 12,
+    color: "blue",
+    padding: 2,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#888",
+    backgroundColor: "#dcecf7"
   }
 });
