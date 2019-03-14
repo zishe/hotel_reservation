@@ -1,13 +1,13 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import { Bookings } from "../screens";
+import { createDrawerNavigator, createAppContainer } from "react-navigation";
+import { BookingsScreen, BookingScreen } from "../screens";
 
-const AppStackNavigator = createStackNavigator(
+const AppStackNavigator = createDrawerNavigator(
   {
-    Bookings: { screen: Bookings }
+    Bookings: { screen: BookingsScreen },
+    Booking: { screen: BookingScreen }
   },
   {
-    initialRouteName: "Bookings",
-    headerMode: "none"
+    initialRouteName: "Bookings"
   }
 );
 

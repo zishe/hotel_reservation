@@ -1,10 +1,7 @@
 import React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import renderer from "react-test-renderer";
-import { mount } from "enzyme";
-import { ActivityIndicator } from "react-native";
 import wait from "waait";
-import { Text } from "react-native";
 
 import Bookings from "./Bookings";
 import { GET_BOOKINGS_QUERY } from "../../graphql/queries/getBookings";
@@ -25,7 +22,7 @@ const bookingsQueryMock: any = {
     data: {
       reservations: [
         {
-          id: "1",
+          id: "Test-1",
           name: "TestName",
           hotelName: "TestHotel",
           arrivalDate: "03/09/2019",
@@ -47,7 +44,7 @@ const bookingsQueryErrorMock: any = {
 };
 
 describe("BookingsScreen", () => {
-  let props: any; // use type "any" to opt-out of type-checking
+  let props: any;
   beforeEach(() => {
     props = testProps({});
   });
@@ -69,48 +66,79 @@ describe("BookingsScreen", () => {
    * @description test loading state
    */
   it("should render loading state initially", async () => {
-    const bookingsWrapper = mount(
+    const bookings = renderer.create(
       <MockedProvider mocks={[]}>
         <Bookings {...props} />
       </MockedProvider>
     );
-
-    expect(
-      bookingsWrapper.contains(
-        <ActivityIndicator size="large" color="#00ff00" />
-      )
-    ).toBeTruthy();
+    const activityIndicator = bookings.root.findAll(
+      el =>
+        el.type === "ActivityIndicator" &&
+        el.props.testID === "activityIndicator"
+    );
+    expect(activityIndicator).toHaveLength(1);
   });
 
   /**
    * @description test for valid data
    */
   it("should render data correctly", async () => {
-    const bookingsWrapper = mount(
+    const bookings = renderer.create(
       <MockedProvider mocks={[bookingsQueryMock]} addTypename={false}>
         <Bookings {...props} />
       </MockedProvider>
     );
 
     await wait(0); // wait for response
-    bookingsWrapper.update();
-    expect(bookingsWrapper.contains(<Text>TestName</Text>)).toBeTruthy();
+
+    const dataNode = bookings.root.findAll(
+      el =>
+        el.type === "Text" &&
+        el.children &&
+        el.children[0] === bookingsQueryMock.result.data.reservations[0].name
+    );
+    expect(dataNode).toHaveLength(1);
   });
 
   /**
    * @description test for error condition
    */
   it("should render error correctly", async () => {
-    const bookingsWrapper = mount(
+    const bookings = renderer.create(
       <MockedProvider mocks={[bookingsQueryErrorMock]} addTypename={false}>
         <Bookings {...props} />
       </MockedProvider>
     );
 
     await wait(0); // wait for response
-    bookingsWrapper.update();
-    expect(
-      bookingsWrapper.contains(<Text>Network error: TestError</Text>)
-    ).toBeTruthy();
+    const errorNode = bookings.root.findAll(
+      el =>
+        el.type === "Text" &&
+        el.children &&
+        el.children[0].toString().indexOf("TestError") > -1
+    );
+    expect(errorNode).toHaveLength(1);
+  });
+
+  /**
+   * @description test reservation ListItem onPress
+   */
+  it("should call navigation.navigate when a reservation item is pressed", async () => {
+    const bookings = renderer.create(
+      <MockedProvider mocks={[bookingsQueryMock]} addTypename={false}>
+        <Bookings {...props} />
+      </MockedProvider>
+    );
+    await wait(0); // wait for response
+    const reservationListItem = bookings.root.find(
+      el => el.props.testID === "Test-1"
+    );
+
+    reservationListItem.props.onPress();
+    const reservation = bookingsQueryMock.result.data.reservations[0];
+    expect(props.navigation.navigate).toHaveBeenCalledWith("Booking", {
+      reservation,
+      navigation: props.navigation
+    });
   });
 });

@@ -24,6 +24,11 @@ interface Props {
 }
 
 export default class BookingsScreen extends React.PureComponent<Props, {}> {
+  static navigationOptions = {
+    drawerLabel: "Reservatinos",
+    drawerIcon: (): any => null
+  };
+
   render() {
     return (
       <Query query={GET_BOOKINGS_QUERY}>
@@ -45,12 +50,17 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
       return this.renderMessage("loading...");
     }
     if (error) {
-      return this.renderMessage(error.message || JSON.stringify(error));
+      return this.renderMessage(
+        error.message || "Error receiving data, please check your network."
+      );
     }
     return (
       <Container>
         <Content contentContainerStyle={styles.screenContainer}>
-          <AppHeader title="Hotel Reservations" />
+          <AppHeader
+            title="Hotel Reservations"
+            navigation={this.props.navigation}
+          />
           <View style={styles.content}>
             <FlatList
               data={data.reservations}
@@ -63,10 +73,18 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
     );
   };
 
+  /**
+   * @description displays one reservation row/item
+   * @param item reservation object
+   */
   renderBooking = ({ item: reservation }: any) => {
     return (
       <Card style={{ flex: 1 }}>
-        <CardItem>
+        <CardItem
+          button
+          testID={reservation.id}
+          onPress={() => this.showBooking(reservation)}
+        >
           <Body style={styles.cardBody}>
             <Text>{reservation.name}</Text>
             <TextNB note>{reservation.id}</TextNB>
@@ -83,6 +101,17 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
   };
 
   /**
+   * @description callback function for onPress of a reservation in the list
+   *  navigates to Booking Details screen
+   */
+  showBooking = (reservation: Reservation) => {
+    this.props.navigation.navigate("Booking", {
+      reservation,
+      navigation: this.props.navigation
+    });
+  };
+
+  /**
    * @description displays a message in the view's content area
    * @param message message to display
    */
@@ -93,7 +122,11 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
           <AppHeader title="Hotel Reservations" />
           <View style={styles.content}>
             {message.indexOf("loading") === 0 ? (
-              <ActivityIndicator size="large" color="#00ff00" />
+              <ActivityIndicator
+                size="large"
+                color="#00ff00"
+                testID="activityIndicator"
+              />
             ) : (
               <Text>{message}</Text>
             )}
