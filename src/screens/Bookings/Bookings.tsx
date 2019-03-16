@@ -7,7 +7,8 @@ import {
   Right,
   Card,
   CardItem,
-  Body
+  Body,
+  Icon
 } from "native-base";
 import styles from "./styles";
 import { AppHeader } from "../../components";
@@ -26,7 +27,7 @@ interface Props {
 export default class BookingsScreen extends React.PureComponent<Props, {}> {
   static navigationOptions = {
     drawerLabel: "Reservatinos",
-    drawerIcon: (): any => null
+    drawerIcon: (): any => <Icon name={"list"} />
   };
 
   render() {
