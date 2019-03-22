@@ -11,14 +11,13 @@ import {
   Icon
 } from "native-base";
 import styles from "./styles";
+import { format } from "date-fns";
 import { AppHeader } from "../../components";
 import { Query } from "react-apollo";
 import { GET_BOOKINGS_QUERY } from "../../graphql/queries/getBookings";
 
-import {
-  GetBookingsQuery,
-  Reservation
-} from "../../graphql/queries/__generated__/GetBookingsQuery";
+import { GetBookingsQuery } from "../../graphql/queries/__generated__/GetBookingsQuery";
+import { Reservation } from "../../graphql/commonGeneratedTypes";
 
 interface Props {
   navigation: any;
@@ -90,7 +89,8 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
             <Text>{reservation.name}</Text>
             <TextNB note>{reservation.id}</TextNB>
             <Text style={styles.hightlightedNote}>
-              {reservation.arrivalDate} - {reservation.departureDate}
+              {format(reservation.arrivalDate, "MM/DD/YYYY")} -{" "}
+              {format(reservation.departureDate, "MM/DD/YYYY")}
             </Text>
           </Body>
           <Right style={styles.cardRight}>

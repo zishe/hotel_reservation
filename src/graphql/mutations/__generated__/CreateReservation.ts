@@ -5,9 +5,16 @@ import { Reservation } from "../../commonGeneratedTypes";
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetBookingsQuery
+// GraphQL mutation operation: CreateReservation
 // ====================================================
 
-export interface GetBookingsQuery {
-  reservations: (Reservation | null)[];
+export interface CreateReservationMutation {
+  createReservation: Reservation;
+}
+
+export interface CreateReservationVariables {
+  name: string;
+  hotelName: string;
+  arrivalDate: string;
+  departureDate: string;
 }

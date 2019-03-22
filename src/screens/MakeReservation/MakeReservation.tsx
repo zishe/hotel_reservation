@@ -1,27 +1,29 @@
 import React from "react";
-import { Text, TextInput, ActivityIndicator, View } from "react-native";
+import { Text, TextInput, View, ActivityIndicator } from "react-native";
 import {
   Container,
-  Segment,
-  Item,
   Button,
   Content,
   Icon,
-  DatePicker
+  DatePicker,
+  Toast
 } from "native-base";
+import { Mutation } from "react-apollo";
+import { format, addDays } from "date-fns";
+import { CREATE_RESERVATION_MUTATION } from "../../graphql/mutations/createReservation";
 import { AppHeader } from "../../components";
 import styles from "./styles";
+import { CreateReservationMutation } from "../../graphql/mutations/__generated__/CreateReservation";
 
 interface Props {
   navigation: any;
-  loading: boolean;
 }
+
 interface State {
   name: string;
   hotelName: string;
-  arrivalDate: string;
-  departureDate: string;
-  showDatePicker: "a" | "d" | "";
+  arrivalDate: string | Date;
+  departureDate: string | Date;
 }
 
 interface FormField {
@@ -51,9 +53,42 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
   state: State = {
     name: "",
     hotelName: "",
-    arrivalDate: "",
-    departureDate: "",
-    showDatePicker: ""
+    arrivalDate: new Date(),
+    departureDate: addDays(new Date(), 1)
+  };
+
+  screenFocusSubscription: any = null;
+
+  constructor(props: Props) {
+    super(props);
+  }
+
+  // subscribe to 'didFocus' event of react-navigation
+  // whenever user lands on this screen, set the initial state
+  subscribeToDidFocus = () => {
+    this.screenFocusSubscription = this.props.navigation.addListener(
+      "didFocus",
+      () => {
+        this.initializeState();
+      }
+    );
+  };
+
+  // unsubscribe didFocus event
+  componentWillMount() {
+    this.subscribeToDidFocus();
+  }
+
+  /**
+   * @name initializeState
+   */
+  initializeState = () => {
+    this.setState({
+      name: "",
+      hotelName: "",
+      arrivalDate: new Date(),
+      departureDate: addDays(new Date(), 1)
+    });
   };
 
   /**
@@ -62,61 +97,48 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
    */
   render() {
     return (
-      <Container>
-        <AppHeader title="My Vocabulary" navigation={this.props.navigation} />
-        <View style={styles.content}>
-          <View style={styles.subHeader}>
-            <Text style={styles.subHeaderText}>Make New Reservation</Text>
-          </View>
-
-          <View style={styles.body}>
-            <Content padder contentContainerStyle={styles.contentContainer}>
-              {formFields.map(field => this.renderField(field))}
-              {this.renderSubmitButton()}
-            </Content>
-          </View>
-        </View>
-      </Container>
+      <Mutation
+        mutation={CREATE_RESERVATION_MUTATION}
+        variables={{ ...this.state }}
+      >
+        {(createReservation, { loading, error, data }) =>
+          this.renderForm(createReservation, loading, error, data)
+        }
+      </Mutation>
     );
   }
 
   /**
-   * @name onTextChange
-   * @description function to call onChangeText event of text inputs
-   *              to update the corresponding state value
-   * @param fieldName name of the input whose text value has been changed
-   * @param value value of the input field
+   * @name renderForm
+   * @desc renders the form for making a new reservation
    */
-  onTextChange = (fieldName: string, value: string) => {
-    this.setState({
-      [fieldName as any]: value.trim()
-    });
-  };
+  renderForm = (
+    createReservation: any,
+    loading: boolean,
+    error: any,
+    data: CreateReservationMutation
+  ) => (
+    <Container>
+      <AppHeader
+        title="Hilton Reservations"
+        navigation={this.props.navigation}
+      />
+      <View style={styles.content}>
+        {error && this.onReservationError(error)}
+        {data && this.onReservationComplete()}
+        <View style={styles.subHeader}>
+          <Text style={styles.subHeaderText}>Make New Reservation</Text>
+        </View>
 
-  /**
-   * @name postWord
-   * @description function to call onPress of Add Word button of the form
-   */
-  postWord = () => {
-    console.log(`fgsfsdgfdgsgd`);
-  };
-
-  /**
-   * @name arrivalDatePicked
-   * @param date the date returned from DatePicker
-   * @description sets the state.arrivalDate to selected date
-   * @memberof MakeReservation
-   */
-  arrivalDatePicked = (date: string) => this.setState({ arrivalDate: date });
-
-  /**
-   * @name departureDatePicked
-   * @param date the date returned from DatePicker
-   * @description sets the state.departureDate to selected date
-   * @memberof MakeReservation
-   */
-  departureDatePicked = (date: string) =>
-    this.setState({ departureDate: date });
+        <View style={styles.body}>
+          <Content padder contentContainerStyle={styles.contentContainer}>
+            {formFields.map(field => this.renderField(field))}
+            {this.renderSubmitButton(createReservation, loading)}
+          </Content>
+        </View>
+      </View>
+    </Container>
+  );
 
   /**
    * @name renderField
@@ -148,9 +170,10 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
   renderTextInput = (field: FormField) => {
     return (
       <TextInput
+        testID={field.name}
         style={styles.textBox}
         placeholder={field.label}
-        value={this.state.hotelName}
+        value={(this.state as any)[field.name]}
         onChangeText={txt => this.onTextChange(field.name, txt)}
       />
     );
@@ -163,42 +186,114 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
    * @memberof MakeReservation
    */
   renderDatePicker = (field: FormField) => {
+    // set default value for arrivalDate=today, departure date = tomorrow
+    const defaultDate =
+      field.name === "departureDate" ? addDays(new Date(), 1) : new Date();
+
     return (
       <View style={styles.textBox}>
         <DatePicker
-          defaultDate={new Date()}
-          minimumDate={new Date()}
+          defaultDate={defaultDate}
+          minimumDate={defaultDate}
           maximumDate={new Date(2999, 12, 31)}
           modalTransparent={false}
           animationType={"fade"}
           androidMode={"default"}
-          placeHolderText={field.label}
           textStyle={{ color: "green" }}
           placeHolderTextStyle={{ color: "#d3d3d3" }}
-          onDateChange={this.arrivalDatePicked}
+          testID={field.name}
+          onDateChange={date => this.datePicked(date, field.name)}
+          formatChosenDate={(date: string) => format(date, "MM/DD/YYYY")}
           disabled={false}
         />
       </View>
     );
   };
 
-  renderSubmitButton = () => {
+  /**
+   * @name datePicked
+   * @param date the date returned from DatePicker
+   * @description sets the state.arrivalDate to selected date
+   * @memberof MakeReservation
+   */
+  datePicked = (date: string, fieldName: string) =>
+    this.setState({ [fieldName]: date } as any);
+
+  /**
+   * @name renderSubmitButton
+   * @description render Submit button, show a loading spinner with disabled status when query is running
+   * @memberof MakeReservation
+   */
+  renderSubmitButton = (createReservation: any, loading: boolean) => {
     return (
       <View style={[styles.rowSpan1]}>
         <Button
           iconLeft
           full
           style={[styles.button]}
-          disabled={this.props.loading}
-          onPress={this.postWord}
+          disabled={loading}
+          onPress={createReservation}
+          testID="SubmitButton"
         >
-          {this.props.loading ? (
-            <ActivityIndicator color="#bc2b78" size="small" />
-          ) : null}
-
+          {loading && (
+            <ActivityIndicator
+              size="small"
+              color="#00ff00"
+              testID="activityIndicator"
+            />
+          )}
           <Text style={styles.buttonText}>Make Reservation</Text>
         </Button>
       </View>
     );
+  };
+
+  /**
+   * @name onReservationError
+   * @description callback to show Mutation error
+   * @memberof MakeReservation
+   */
+  onReservationError = (error: any) => {
+    this.toastMessage(
+      error.message || "Server or Network error, please try again"
+    );
+  };
+
+  /**
+   * @name onTextChange
+   * @description function to call onChangeText event of text inputs
+   *              to update the corresponding state value
+   * @param fieldName name of the input whose text value has been changed
+   * @param value value of the input field
+   * @memberof MakeReservation
+   */
+  onTextChange = (fieldName: string, value: string) => {
+    this.setState({
+      [fieldName]: value.trim()
+    } as any);
+  };
+
+  /**
+   * @name toastMessage
+   * @param msg Message to show on toast
+   * @memberof MakeReservation
+   */
+  toastMessage = (message: string) => {
+    return Toast.show({
+      text: message,
+      buttonText: "Okay",
+      position: "bottom",
+      duration: 5000
+    });
+  };
+
+  /**
+   * @name onReservationComplete
+   * @description callback for Mutation onComplete
+   * @memberof MakeReservation
+   */
+  onReservationComplete = () => {
+    this.toastMessage("Congratulations! Room reserved successfully!");
+    this.props.navigation.navigate("Bookings");
   };
 }
