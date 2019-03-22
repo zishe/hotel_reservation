@@ -1,10 +1,15 @@
 import { createDrawerNavigator, createAppContainer } from "react-navigation";
-import { BookingsScreen, BookingScreen } from "../screens";
+import {
+  BookingsScreen,
+  BookingScreen,
+  MakeReservationScreen
+} from "../screens";
 
 const AppStackNavigator = createDrawerNavigator(
   {
     Bookings: { screen: BookingsScreen },
-    Booking: { screen: BookingScreen }
+    Booking: { screen: BookingScreen },
+    MakeReservation: { screen: MakeReservationScreen }
   },
   {
     initialRouteName: "Bookings"

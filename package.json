@@ -19,18 +19,20 @@
     "watchAndStart": "concurrently \"yarn run watch\" \"yarn run start\"",
     "buildAndStart": "yarn run build && yarn run watchAndStart ",
     "testWithCoverage": "jest --updateSnapshot --watchAll --coverage && open ./coverage/lcov-report/index.html",
-    "gql-schema-download": "apollo schema:download --endpoint=https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev",
-    "gql-codegen": "apollo client:codegen --queries=./src/graphql/**/*.ts --localSchemaFile=./schema.json --target=ts-modern"
+    "gql-schema-download": "apollo schema:download ./src/graphQL/graphQL_schema.json --endpoint=https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev",
+    "gql-codegen": "apollo client:codegen --includes=./src/graphql/**/*.ts --localSchemaFile=./src/graphQL/graphQL_schema.json --target=typescript"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "apollo-boost": "^0.1.28",
+    "date-fns": "^1.30.1",
     "graphql": "^14.1.1",
-    "native-base": "https://github.com/GeekyAnts/NativeBase#master",
+    "native-base": "^2.12.1",
     "react": "16.6.3",
     "react-apollo": "^2.4.1",
     "react-native": "0.58.5",
     "react-native-awesome-alerts": "^1.2.0",
+    "react-native-datepicker-dialog": "^0.0.9",
     "react-native-gesture-handler": "^1.0.16",
     "react-native-responsive-fontsize": "^0.1.8",
     "react-native-vector-icons": "^6.3.0",
@@ -38,6 +40,7 @@
     "waait": "^1.0.4"
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/graphql": "^14.0.7",
     "@types/jest": "^24.0.6",
     "@types/jsdom": "^12.2.3",

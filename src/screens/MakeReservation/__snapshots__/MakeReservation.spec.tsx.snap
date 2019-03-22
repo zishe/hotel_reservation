@@ -1,0 +1,655 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MakeReservationScreen should render as expected 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "height": 1334,
+    }
+  }
+>
+  <View
+    onLayout={[Function]}
+  >
+    <View
+      androidStatusBarColor="lightgray"
+      iosBarStyle="dark-content"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#F8F8F8",
+            "borderBottomColor": "#a7a6ab",
+            "borderBottomWidth": 0.5,
+            "elevation": 3,
+            "flexDirection": "row",
+            "height": 64,
+            "justifyContent": "center",
+            "left": 0,
+            "paddingLeft": 6,
+            "paddingRight": 10,
+            "paddingTop": 18,
+            "right": 0,
+            "shadowColor": undefined,
+            "shadowOffset": undefined,
+            "shadowOpacity": undefined,
+            "shadowRadius": undefined,
+            "top": 0,
+          },
+          Object {
+            "backgroundColor": "#104c97",
+            "elevation": 4,
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "alignSelf": "center",
+              "flex": 1,
+            },
+            Object {
+              "flex": 2,
+            },
+          ]
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Array [
+                Object {
+                  "color": "#000",
+                  "fontSize": 30,
+                },
+                Object {
+                  "color": "#000",
+                  "fontSize": 30,
+                },
+                Object {
+                  "color": "#fff",
+                  "padding": 5,
+                },
+              ],
+              Object {
+                "fontFamily": "Ionicons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
+            ]
+          }
+          testID="menu"
+        >
+          
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "flex": 1,
+            },
+            Object {
+              "alignItems": "center",
+              "flex": 4,
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#000",
+                "fontFamily": "System",
+                "fontSize": 17,
+                "fontWeight": "700",
+                "marginLeft": undefined,
+                "paddingLeft": 4,
+                "paddingTop": 1,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#fff",
+              },
+            ]
+          }
+        >
+          Hilton Reservations
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-end",
+              "alignSelf": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "flex-end",
+            },
+            Object {
+              "flex": 2,
+            },
+          ]
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": undefined,
+                "fontSize": 12,
+              },
+              Array [
+                Object {
+                  "color": "#000",
+                  "fontSize": 30,
+                },
+                Object {
+                  "color": "#000",
+                  "fontSize": 30,
+                },
+                Object {
+                  "color": "#fff",
+                  "padding": 5,
+                },
+              ],
+              Object {
+                "fontFamily": "Ionicons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
+            ]
+          }
+          testID="contact"
+        >
+          
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#bbb",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#666",
+            "fontSize": 43,
+          }
+        }
+      >
+        Make New Reservation
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 9,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <RCTScrollView
+        automaticallyAdjustContentInsets={false}
+        contentContainerStyle={
+          Array [
+            Object {
+              "padding": 10,
+            },
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+        contentInset={
+          Object {
+            "bottom": 0,
+          }
+        }
+        enableAutomaticScroll={true}
+        enableOnAndroid={false}
+        enableResetScrollToCoords={true}
+        extraHeight={75}
+        extraScrollHeight={0}
+        getScrollResponder={[Function]}
+        handleOnScroll={[Function]}
+        keyboardDismissMode="interactive"
+        keyboardOpeningTime={250}
+        keyboardShouldPersistTaps="handled"
+        keyboardSpace={0}
+        onScroll={[Function]}
+        padder={true}
+        resetKeyboardSpace={[Function]}
+        resetScrollToCoords={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        scrollEventThrottle={1}
+        scrollForExtraHeightOnAndroid={[Function]}
+        scrollIntoView={[Function]}
+        scrollToEnd={[Function]}
+        scrollToFocusedInput={[Function]}
+        scrollToPosition={[Function]}
+        showsVerticalScrollIndicator={true}
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "flex": 1,
+          }
+        }
+        update={[Function]}
+        viewIsInsideTabBar={false}
+      >
+        <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "borderBottomWidth": 1,
+                  "borderColor": "#ddd",
+                  "flex": 2,
+                  "justifyContent": "center",
+                  "marginTop": 8,
+                  "padding": 15,
+                  "width": 750,
+                },
+              ]
+            }
+          >
+            <View>
+              <Text>
+                Guest Name
+              </Text>
+            </View>
+            <View>
+              <TextInput
+                autoFocus={false}
+                blur={false}
+                onChangeText={[Function]}
+                placeholder="Guest Name"
+                style={
+                  Object {
+                    "borderColor": "#aaa",
+                    "borderRadius": 4,
+                    "borderWidth": 1.5,
+                    "height": 60,
+                    "justifyContent": "center",
+                    "marginTop": 9,
+                    "padding": 5,
+                    "width": 720,
+                  }
+                }
+                testID="name"
+                value=""
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "borderBottomWidth": 1,
+                  "borderColor": "#ddd",
+                  "flex": 2,
+                  "justifyContent": "center",
+                  "marginTop": 8,
+                  "padding": 15,
+                  "width": 750,
+                },
+              ]
+            }
+          >
+            <View>
+              <Text>
+                Hotel Name
+              </Text>
+            </View>
+            <View>
+              <TextInput
+                autoFocus={false}
+                blur={false}
+                onChangeText={[Function]}
+                placeholder="Hotel Name"
+                style={
+                  Object {
+                    "borderColor": "#aaa",
+                    "borderRadius": 4,
+                    "borderWidth": 1.5,
+                    "height": 60,
+                    "justifyContent": "center",
+                    "marginTop": 9,
+                    "padding": 5,
+                    "width": 720,
+                  }
+                }
+                testID="hotelName"
+                value=""
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "borderBottomWidth": 1,
+                  "borderColor": "#ddd",
+                  "flex": 2,
+                  "justifyContent": "center",
+                  "marginTop": 8,
+                  "padding": 15,
+                  "width": 750,
+                },
+              ]
+            }
+          >
+            <View>
+              <Text>
+                Arrival Date
+              </Text>
+            </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "borderColor": "#aaa",
+                    "borderRadius": 4,
+                    "borderWidth": 1.5,
+                    "height": 60,
+                    "justifyContent": "center",
+                    "marginTop": 9,
+                    "padding": 5,
+                    "width": 720,
+                  }
+                }
+              >
+                <View>
+                  <View>
+                    <Text
+                      onPress={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#000",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#000",
+                            "padding": 10,
+                          },
+                          Object {
+                            "color": "green",
+                          },
+                        ]
+                      }
+                      uppercase={false}
+                    >
+                      03/22/2019
+                    </Text>
+                    <View>
+                      <Modal
+                        animationType="fade"
+                        hardwareAccelerated={false}
+                        onRequestClose={[Function]}
+                        supportedOrientations={
+                          Array [
+                            "portrait",
+                            "landscape",
+                          ]
+                        }
+                        transparent={false}
+                        visible={false}
+                      >
+                        <Text
+                          onPress={[Function]}
+                          style={
+                            Array [
+                              Object {
+                                "color": "#000",
+                                "fontFamily": "System",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                                "flex": 1,
+                              },
+                            ]
+                          }
+                          uppercase={false}
+                        />
+                        <DatePickerIOS
+                          date={2019-03-22T15:58:43.751Z}
+                          maximumDate={3000-01-31T06:00:00.000Z}
+                          minimumDate={2019-03-22T15:58:43.751Z}
+                          mode="date"
+                          onDateChange={[Function]}
+                          setNativeProps={false}
+                        />
+                      </Modal>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "borderBottomWidth": 1,
+                  "borderColor": "#ddd",
+                  "flex": 2,
+                  "justifyContent": "center",
+                  "marginTop": 8,
+                  "padding": 15,
+                  "width": 750,
+                },
+              ]
+            }
+          >
+            <View>
+              <Text>
+                Departure Date
+              </Text>
+            </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "borderColor": "#aaa",
+                    "borderRadius": 4,
+                    "borderWidth": 1.5,
+                    "height": 60,
+                    "justifyContent": "center",
+                    "marginTop": 9,
+                    "padding": 5,
+                    "width": 720,
+                  }
+                }
+              >
+                <View>
+                  <View>
+                    <Text
+                      onPress={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#000",
+                            "fontFamily": "System",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#000",
+                            "padding": 10,
+                          },
+                          Object {
+                            "color": "green",
+                          },
+                        ]
+                      }
+                      uppercase={false}
+                    >
+                      03/23/2019
+                    </Text>
+                    <View>
+                      <Modal
+                        animationType="fade"
+                        hardwareAccelerated={false}
+                        onRequestClose={[Function]}
+                        supportedOrientations={
+                          Array [
+                            "portrait",
+                            "landscape",
+                          ]
+                        }
+                        transparent={false}
+                        visible={false}
+                      >
+                        <Text
+                          onPress={[Function]}
+                          style={
+                            Array [
+                              Object {
+                                "color": "#000",
+                                "fontFamily": "System",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                                "flex": 1,
+                              },
+                            ]
+                          }
+                          uppercase={false}
+                        />
+                        <DatePickerIOS
+                          date={2019-03-23T15:58:43.751Z}
+                          maximumDate={3000-01-31T06:00:00.000Z}
+                          minimumDate={2019-03-23T15:58:43.751Z}
+                          mode="date"
+                          onDateChange={[Function]}
+                          setNativeProps={false}
+                        />
+                      </Modal>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "stretch",
+                  "borderBottomWidth": 1,
+                  "borderColor": "#ddd",
+                  "flex": 2,
+                  "justifyContent": "center",
+                  "marginTop": 8,
+                  "padding": 15,
+                  "width": 750,
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "backgroundColor": "#007aff",
+                  "borderBottomWidth": null,
+                  "borderColor": "#007aff",
+                  "borderLeftWidth": null,
+                  "borderRadius": 4,
+                  "borderRightWidth": null,
+                  "borderTopWidth": null,
+                  "borderWidth": undefined,
+                  "elevation": 2,
+                  "flexDirection": "row",
+                  "fontSize": 20,
+                  "height": 70,
+                  "justifyContent": "center",
+                  "marginTop": 8,
+                  "opacity": 1,
+                  "paddingBottom": 6,
+                  "paddingTop": 6,
+                  "shadowColor": undefined,
+                  "shadowOffset": undefined,
+                  "shadowOpacity": undefined,
+                  "shadowRadius": undefined,
+                }
+              }
+              testID="SubmitButton"
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#FFF",
+                    "fontSize": 43,
+                  }
+                }
+              >
+                Make Reservation
+              </Text>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;

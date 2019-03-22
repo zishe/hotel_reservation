@@ -953,6 +953,13 @@
   dependencies:
     "@types/babel-types" "*"
 
+"@types/date-fns@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@types/date-fns/-/date-fns-2.6.0.tgz#b062ca46562002909be0c63a6467ed173136acc1"
+  integrity sha1-sGLKRlYgApCb4MY6ZGftFzE2rME=
+  dependencies:
+    date-fns "*"
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -2854,7 +2861,7 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns@^1.23.0, date-fns@^1.27.2:
+date-fns@*, date-fns@^1.23.0, date-fns@^1.27.2, date-fns@^1.30.1:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
@@ -6459,9 +6466,10 @@ native-base-shoutem-theme@0.2.3:
     lodash "4.17.11"
     prop-types "^15.5.10"
 
-"native-base@https://github.com/GeekyAnts/NativeBase#master":
-  version "2.12.0"
-  resolved "https://github.com/GeekyAnts/NativeBase#36b33ab368c61c3db2eebc742a3ff8a946e24d13"
+native-base@^2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.12.1.tgz#0ce367076fd5694f92abab6e0a69a84dc5dfa800"
+  integrity sha512-4DH5aKaazOwh7//URZySVxgHFnoZnkhat3aMEJYd/eWW/RBJQ/lBk/nRmDicLqq1chzq/6Ok4KmkQnVwSTt3mA==
   dependencies:
     blueimp-md5 "^2.5.0"
     clamp "^1.0.1"
@@ -7461,6 +7469,11 @@ react-native-awesome-alerts@^1.2.0:
   integrity sha512-ouxDGJ/porNkuaeqpgxIJA4jAPqHC9bJIsxLA21NA6eZhnEhbqWOprjsNqwI0/7bJxXm9baTzXESCMzwAy3eZw==
   dependencies:
     prop-types "^15.5.10"
+
+react-native-datepicker-dialog@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-datepicker-dialog/-/react-native-datepicker-dialog-0.0.9.tgz#6e1f890a9b40937cea9e0c762fd542afb9fc3f37"
+  integrity sha1-bh+JCptAk3zqngx2L9VCr7n8Pzc=
 
 react-native-drawer@2.5.1:
   version "2.5.1"
