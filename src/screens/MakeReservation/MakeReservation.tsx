@@ -13,7 +13,7 @@ import { format, addDays } from "date-fns";
 import { CREATE_RESERVATION_MUTATION } from "../../graphql/mutations/createReservation";
 import { AppHeader } from "../../components";
 import styles from "./styles";
-import { CreateReservationMutation } from "../../graphql/mutations/__generated__/CreateReservation";
+import { CreateReservation } from "../../graphql/mutations/__generated__/CreateReservation";
 
 interface Props {
   navigation: any;
@@ -116,7 +116,7 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
     createReservation: any,
     loading: boolean,
     error: any,
-    data: CreateReservationMutation
+    data: CreateReservation
   ) => (
     <Container>
       <AppHeader

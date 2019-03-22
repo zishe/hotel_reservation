@@ -14,15 +14,20 @@ import styles from "./styles";
 import { format } from "date-fns";
 import { AppHeader } from "../../components";
 import { Query } from "react-apollo";
-import { GET_BOOKINGS_QUERY } from "../../graphql/queries/getBookings";
-
-import { GetBookingsQuery } from "../../graphql/queries/__generated__/GetBookingsQuery";
-import { Reservation } from "../../graphql/commonGeneratedTypes";
+import { GET_RESERVATIONS_CONNECTION } from "../../graphql/queries/getBookings";
+import {
+  Reservation,
+  ReservationsConnectionNode,
+  ReservationsConnectionQuery
+} from "../../graphql/commonGeneratedTypes";
 
 interface Props {
   navigation: any;
 }
 
+interface ListItem {
+  item: ReservationsConnectionNode;
+}
 export default class BookingsScreen extends React.PureComponent<Props, {}> {
   static navigationOptions = {
     drawerLabel: "Reservatinos",
@@ -31,21 +36,27 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
 
   render() {
     return (
-      <Query query={GET_BOOKINGS_QUERY}>
-        {({ loading, data, error }) => this.renderList(data, loading, error)}
+      <Query query={GET_RESERVATIONS_CONNECTION} variables={{ first: 9 }}>
+        {({ loading, data, error, fetchMore }) =>
+          this.renderList(data, loading, error, fetchMore)
+        }
       </Query>
     );
   }
 
-  keyExtractor = (item: Reservation) => item.id;
-
+  keyExtractor = (item: ReservationsConnectionNode) => item.node.id;
   /**
    * @description render list of reservations
    * @param data graphql query data
    * @param loading loading status from graphql query
    * @param error error from graphql query
    */
-  renderList = (data: GetBookingsQuery, loading: boolean, error: any) => {
+  renderList = (
+    data: ReservationsConnectionQuery,
+    loading: boolean,
+    error: any,
+    fetchMore: any
+  ) => {
     if (loading) {
       return this.renderMessage("loading...");
     }
@@ -54,6 +65,7 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
         error.message || "Error receiving data, please check your network."
       );
     }
+
     return (
       <Container>
         <Content contentContainerStyle={styles.screenContainer}>
@@ -63,9 +75,19 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
           />
           <View style={styles.content}>
             <FlatList
-              data={data.reservations}
+              data={data.reservationsConnection.edges}
               keyExtractor={this.keyExtractor}
               renderItem={this.renderBooking}
+              onEndReachedThreshold={1}
+              onEndReached={() => {
+                fetchMore({
+                  variables: {
+                    first: 9,
+                    cursor: data.reservationsConnection.pageInfo.endCursor
+                  },
+                  updateQuery: this.fetchMoreResults
+                });
+              }}
             />
           </View>
         </Content>
@@ -77,24 +99,28 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
    * @description displays one reservation row/item
    * @param item reservation object
    */
-  renderBooking = ({ item: reservation }: any) => {
+  renderBooking = (listItem: ListItem) => {
+    const reservationNode = listItem.item.node;
+
     return (
       <Card style={{ flex: 1 }}>
         <CardItem
           button
-          testID={reservation.id}
-          onPress={() => this.showBooking(reservation)}
+          testID={reservationNode.id}
+          onPress={() => this.showBooking(reservationNode)}
         >
           <Body style={styles.cardBody}>
-            <Text>{reservation.name}</Text>
-            <TextNB note>{reservation.id}</TextNB>
+            <Text>{reservationNode.name}</Text>
+            <TextNB note>{reservationNode.id}</TextNB>
             <Text style={styles.hightlightedNote}>
-              {format(reservation.arrivalDate, "MM/DD/YYYY")} -{" "}
-              {format(reservation.departureDate, "MM/DD/YYYY")}
+              {format(reservationNode.arrivalDate, "MM/DD/YYYY")} -{" "}
+              {format(reservationNode.departureDate, "MM/DD/YYYY")}
             </Text>
           </Body>
           <Right style={styles.cardRight}>
-            <Text style={styles.hightlightedText}>{reservation.hotelName}</Text>
+            <Text style={styles.hightlightedText}>
+              {reservationNode.hotelName}
+            </Text>
           </Right>
         </CardItem>
       </Card>
@@ -135,5 +161,45 @@ export default class BookingsScreen extends React.PureComponent<Props, {}> {
         </Content>
       </Container>
     );
+  };
+
+  /**
+   * @name fetchMoreResults
+   * @param previousResult set of results fetuched in previous fetchMore call
+   * @param newResults set of results fetuched in in current fetchMore call
+   * @memberof BookingsScreen
+   */
+  fetchMoreResults = (
+    previousResult: ReservationsConnectionQuery,
+    newResults: any
+  ) => {
+    const newEdges = newResults.fetchMoreResult.reservationsConnection.edges;
+    const pageInfo = newResults.fetchMoreResult.reservationsConnection.pageInfo;
+    const previousEdges = previousResult.reservationsConnection.edges;
+
+    const aggregate = {
+      __typename: previousResult.reservationsConnection.aggregate.__typename,
+      count:
+        previousResult.reservationsConnection.aggregate.count +
+        newResults.fetchMoreResult.reservationsConnection.aggregate.count
+    };
+
+    const uniqueEdges = newEdges.filter((node: ReservationsConnectionNode) => {
+      const duplicateItems = previousEdges.filter(
+        (pnode: ReservationsConnectionNode) => pnode.node.id === node.node.id
+      );
+      return duplicateItems.length < 1;
+    });
+
+    return newEdges.length
+      ? {
+          reservationsConnection: {
+            __typename: previousResult.reservationsConnection.__typename,
+            edges: [...previousEdges, ...uniqueEdges],
+            pageInfo,
+            aggregate
+          }
+        }
+      : previousResult;
   };
 }
