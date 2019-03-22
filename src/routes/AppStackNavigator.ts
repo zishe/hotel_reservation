@@ -12,7 +12,7 @@ const AppStackNavigator = createDrawerNavigator(
     MakeReservation: { screen: MakeReservationScreen }
   },
   {
-    initialRouteName: "MakeReservation"
+    initialRouteName: "Bookings"
   }
 );
 
