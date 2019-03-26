@@ -13,7 +13,7 @@ import { format, addDays } from "date-fns";
 import { CREATE_RESERVATION_MUTATION } from "../../graphql/mutations/createReservation";
 import { AppHeader } from "../../components";
 import styles from "./styles";
-import { CreateReservationMutation } from "../../graphql/mutations/__generated__/CreateReservation";
+import { SELECTED_RESERVATION_ID } from "../../graphql/client/queries/selectedReservation";
 
 interface Props {
   navigation: any;
@@ -59,10 +59,6 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
 
   screenFocusSubscription: any = null;
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   // subscribe to 'didFocus' event of react-navigation
   // whenever user lands on this screen, set the initial state
   subscribeToDidFocus = () => {
@@ -74,9 +70,14 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
     );
   };
 
-  // unsubscribe didFocus event
+  // subscribe didFocus event
   componentWillMount() {
     this.subscribeToDidFocus();
+  }
+
+  // unsubscribe(remove) didFocus event
+  componentWillUnmount() {
+    this.screenFocusSubscription.remove();
   }
 
   /**
@@ -100,9 +101,12 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
       <Mutation
         mutation={CREATE_RESERVATION_MUTATION}
         variables={{ ...this.state }}
+        update={this.updateStore}
+        refetchQueries={[`GetBookingsQuery`]}
+        awaitRefetchQueries={true}
       >
-        {(createReservation, { loading, error, data }) =>
-          this.renderForm(createReservation, loading, error, data)
+        {(createReservation, { loading, error }) =>
+          this.renderForm(createReservation, loading, error)
         }
       </Mutation>
     );
@@ -112,12 +116,7 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
    * @name renderForm
    * @desc renders the form for making a new reservation
    */
-  renderForm = (
-    createReservation: any,
-    loading: boolean,
-    error: any,
-    data: CreateReservationMutation
-  ) => (
+  renderForm = (createReservation: any, loading: boolean, error: any) => (
     <Container>
       <AppHeader
         title="Hilton Reservations"
@@ -125,7 +124,6 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
       />
       <View style={styles.content}>
         {error && this.onReservationError(error)}
-        {data && this.onReservationComplete()}
         <View style={styles.subHeader}>
           <Text style={styles.subHeaderText}>Make New Reservation</Text>
         </View>
@@ -255,7 +253,8 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
    */
   onReservationError = (error: any) => {
     this.toastMessage(
-      error.message || "Server or Network error, please try again"
+      error.message || "Server or Network error, please try again",
+      "danger"
     );
   };
 
@@ -278,11 +277,12 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
    * @param msg Message to show on toast
    * @memberof MakeReservation
    */
-  toastMessage = (message: string) => {
+  toastMessage = (message: string, type: any = "success") => {
     return Toast.show({
       text: message,
+      type: type,
       buttonText: "Okay",
-      position: "bottom",
+      position: "top",
       duration: 5000
     });
   };
@@ -295,5 +295,27 @@ export default class MakeReservation extends React.PureComponent<Props, State> {
   onReservationComplete = () => {
     this.toastMessage("Congratulations! Room reserved successfully!");
     this.props.navigation.navigate("Bookings");
+  };
+
+  /**
+   * @name updateStore
+   * @param store - ApolloClient Cache store
+   * @param mutationResult - result of the mutation
+   * @description, while ApolloClient would auto-update the store cache of reservations
+   *               we need to manually update the selectedReservationId to newly added
+   *               reservation to higlight it in the list page
+   * @memberof MakeReservation
+   */
+  updateStore = async (store: any, mutationResult: any) => {
+    const {
+      data: { createReservation }
+    } = mutationResult;
+
+    await store.writeQuery({
+      query: SELECTED_RESERVATION_ID.query,
+      data: { selectedReservationId: createReservation.id }
+    });
+
+    this.onReservationComplete();
   };
 }

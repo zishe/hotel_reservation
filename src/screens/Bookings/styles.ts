@@ -19,6 +19,15 @@ export default StyleSheet.create({
     alignItems: "stretch",
     backgroundColor: "#F5FCFF"
   },
+  card: {
+    flex: 1,
+    borderWidth: 3,
+    borderRadius: 4,
+    elevation: 2,
+    shadowOpacity: 0,
+    backgroundColor: "transparent",
+    margin: 2
+  },
   cardBody: {
     flex: 8
   },
