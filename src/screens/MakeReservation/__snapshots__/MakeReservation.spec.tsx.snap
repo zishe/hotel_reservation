@@ -427,7 +427,7 @@ exports[`MakeReservationScreen should render as expected 1`] = `
                       }
                       uppercase={false}
                     >
-                      03/22/2019
+                      03/26/2019
                     </Text>
                     <View>
                       <Modal
@@ -461,9 +461,9 @@ exports[`MakeReservationScreen should render as expected 1`] = `
                           uppercase={false}
                         />
                         <DatePickerIOS
-                          date={2019-03-22T15:58:43.751Z}
+                          date={2019-03-26T13:02:48.511Z}
                           maximumDate={3000-01-31T06:00:00.000Z}
-                          minimumDate={2019-03-22T15:58:43.751Z}
+                          minimumDate={2019-03-26T13:02:48.511Z}
                           mode="date"
                           onDateChange={[Function]}
                           setNativeProps={false}
@@ -533,7 +533,7 @@ exports[`MakeReservationScreen should render as expected 1`] = `
                       }
                       uppercase={false}
                     >
-                      03/23/2019
+                      03/27/2019
                     </Text>
                     <View>
                       <Modal
@@ -567,9 +567,9 @@ exports[`MakeReservationScreen should render as expected 1`] = `
                           uppercase={false}
                         />
                         <DatePickerIOS
-                          date={2019-03-23T15:58:43.751Z}
+                          date={2019-03-27T13:02:48.512Z}
                           maximumDate={3000-01-31T06:00:00.000Z}
-                          minimumDate={2019-03-23T15:58:43.751Z}
+                          minimumDate={2019-03-27T13:02:48.512Z}
                           mode="date"
                           onDateChange={[Function]}
                           setNativeProps={false}

@@ -8,7 +8,9 @@ import { CREATE_RESERVATION_MUTATION } from "../../graphql/mutations/createReser
 const mockProps = (props: Object) => ({
   navigation: {
     navigate: jest.fn(),
-    addListener: jest.fn()
+    addListener: jest.fn().mockImplementation(() => {
+      return { remove: jest.fn() };
+    })
   },
   ...props
 });
@@ -33,15 +35,6 @@ const mockReservationMutation = {
   }
 };
 
-// mock query for error response
-// const mockReservationMutationError: any = {
-//   request: {
-//     mutation: CREATE_RESERVATION_MUTATION
-//   },
-//   error: {
-//     message: "TestError"
-//   }
-// };
 jest.useFakeTimers();
 describe("MakeReservationScreen", () => {
   let props: any;

@@ -1,3 +1,508 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BookingsScreen should render as expected 1`] = `[Function]`;
+
+exports[`BookingsScreen should scroll to selected reservation list item when updated 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "height": 1334,
+    }
+  }
+>
+  <RCTScrollView
+    automaticallyAdjustContentInsets={false}
+    contentContainerStyle={
+      Array [
+        Object {
+          "padding": undefined,
+        },
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "#F5FCFF",
+          "flex": 1,
+          "justifyContent": "flex-start",
+        },
+      ]
+    }
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutomaticScroll={true}
+    enableOnAndroid={false}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    getScrollResponder={[Function]}
+    handleOnScroll={[Function]}
+    keyboardDismissMode="interactive"
+    keyboardOpeningTime={250}
+    keyboardShouldPersistTaps="handled"
+    keyboardSpace={0}
+    onScroll={[Function]}
+    resetKeyboardSpace={[Function]}
+    resetScrollToCoords={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    scrollEventThrottle={1}
+    scrollForExtraHeightOnAndroid={[Function]}
+    scrollIntoView={[Function]}
+    scrollToEnd={[Function]}
+    scrollToFocusedInput={[Function]}
+    scrollToPosition={[Function]}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "flex": 1,
+      }
+    }
+    update={[Function]}
+    viewIsInsideTabBar={false}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          androidStatusBarColor="lightgray"
+          iosBarStyle="dark-content"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F8F8F8",
+                "borderBottomColor": "#a7a6ab",
+                "borderBottomWidth": 0.5,
+                "elevation": 3,
+                "flexDirection": "row",
+                "height": 64,
+                "justifyContent": "center",
+                "left": 0,
+                "paddingLeft": 6,
+                "paddingRight": 10,
+                "paddingTop": 18,
+                "right": 0,
+                "shadowColor": undefined,
+                "shadowOffset": undefined,
+                "shadowOpacity": undefined,
+                "shadowRadius": undefined,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": "#104c97",
+                "elevation": 4,
+                "shadowColor": "black",
+                "shadowOpacity": 1,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "flex-start",
+                  "alignSelf": "center",
+                  "flex": 1,
+                },
+                Object {
+                  "flex": 2,
+                },
+              ]
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  Array [
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#fff",
+                      "padding": 5,
+                    },
+                  ],
+                  Object {
+                    "fontFamily": "Ionicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              testID="menu"
+            >
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "flex": 1,
+                },
+                Object {
+                  "alignItems": "center",
+                  "flex": 4,
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "System",
+                    "fontSize": 17,
+                    "fontWeight": "700",
+                    "marginLeft": undefined,
+                    "paddingLeft": 4,
+                    "paddingTop": 1,
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "color": "#fff",
+                  },
+                ]
+              }
+            >
+              Hotel Reservations
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "flex-end",
+                  "alignSelf": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                },
+                Object {
+                  "flex": 2,
+                },
+              ]
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  Array [
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#fff",
+                      "padding": 5,
+                    },
+                  ],
+                  Object {
+                    "fontFamily": "Ionicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              testID="contact"
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "stretch",
+            "backgroundColor": "#F5FCFF",
+            "flex": 8,
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <RCTScrollView
+          data={
+            Array [
+              Object {
+                "arrivalDate": "03/09/2019",
+                "departureDate": "03/16/2019",
+                "hotelName": "TestHotel",
+                "id": "Test-1",
+                "name": "TestName",
+              },
+            ]
+          }
+          disableVirtualization={false}
+          extraData="Test-1"
+          getItem={[Function]}
+          getItemCount={[Function]}
+          horizontal={false}
+          initialNumToRender={10}
+          keyExtractor={[Function]}
+          maxToRenderPerBatch={10}
+          numColumns={1}
+          onContentSizeChange={[Function]}
+          onEndReachedThreshold={2}
+          onLayout={[Function]}
+          onMomentumScrollEnd={[Function]}
+          onScroll={[Function]}
+          onScrollBeginDrag={[Function]}
+          onScrollEndDrag={[Function]}
+          renderItem={[Function]}
+          scrollEventThrottle={50}
+          stickyHeaderIndices={Array []}
+          testID="FlatListID"
+          updateCellsBatchingPeriod={50}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={21}
+        >
+          <View>
+            <View
+              onLayout={[Function]}
+              style={null}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderRadius": 4,
+                      "borderWidth": 3,
+                      "elevation": 2,
+                      "flex": 1,
+                      "margin": 2,
+                      "shadowOpacity": 0,
+                    },
+                    Object {
+                      "borderColor": "green",
+                    },
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 2,
+                      "flexDirection": "row",
+                      "opacity": 1,
+                      "paddingBottom": 10,
+                      "paddingLeft": 15,
+                      "paddingRight": 15,
+                      "paddingTop": 10,
+                    }
+                  }
+                  testID="Test-1"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "flex-start",
+                          "alignSelf": "stretch",
+                          "flex": 1,
+                        },
+                        Object {
+                          "flex": 8,
+                        },
+                      ]
+                    }
+                  >
+                    <Text>
+                      TestName
+                    </Text>
+                    <Text
+                      note={true}
+                      style={
+                        Object {
+                          "color": "#808080",
+                          "fontFamily": "System",
+                          "fontSize": 14,
+                          "fontWeight": "200",
+                          "marginRight": 20,
+                        }
+                      }
+                      uppercase={false}
+                    >
+                      Test-1
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "backgroundColor": "#dcecf7",
+                          "borderColor": "#888",
+                          "borderRadius": 8,
+                          "borderWidth": 1,
+                          "color": "blue",
+                          "fontSize": 12,
+                          "padding": 2,
+                        }
+                      }
+                    >
+                      03/09/2019
+                       -
+                       
+                      03/16/2019
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "flex-end",
+                          "alignSelf": "center",
+                          "flex": 0.8,
+                        },
+                        Object {
+                          "flex": 2,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#af2b65",
+                        }
+                      }
+                    >
+                      TestHotel
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+    </View>
+  </RCTScrollView>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "bottom": 20,
+        "flexDirection": "column",
+        "height": 56,
+        "left": undefined,
+        "position": "absolute",
+        "right": 20,
+        "top": undefined,
+        "width": 56,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#5067FF",
+          "borderRadius": 28,
+          "bottom": 0,
+          "elevation": 4,
+          "height": 56,
+          "justifyContent": "center",
+          "opacity": 1,
+          "position": "absolute",
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 0,
+          },
+          "shadowOpacity": 0.4,
+          "shadowRadius": 2,
+          "width": 56,
+        }
+      }
+      testID="Fab"
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 12,
+            },
+            Array [
+              Object {
+                "color": "#000",
+                "fontSize": 30,
+              },
+              Object {
+                "color": "#000",
+                "fontSize": 30,
+              },
+              Object {
+                "color": "#fff",
+                "fontSize": 30,
+                "lineHeight": 27,
+              },
+            ],
+            Object {
+              "fontFamily": "Ionicons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+</View>
+`;
