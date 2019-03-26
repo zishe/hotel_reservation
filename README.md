@@ -1,6 +1,4 @@
-#
-
-Hotel Reservation Sample App with React-native and GraphQL
+# Hotel Reservation Sample App with React-native and GraphQL
 
 A sample app for Hotel Reservation system built with React-Native and Apollo GraphQL for iOS and Android platforms
 
