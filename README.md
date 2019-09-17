@@ -38,10 +38,8 @@ cd hotel_reservation
 
 - Install the dependencies:
 
-```
-yarn install` (or `npm install`)
+`yarn install` (or `npm install`)
 
-```
 
 ### To run app on iOS simulator
 
